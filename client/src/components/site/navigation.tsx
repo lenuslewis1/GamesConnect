@@ -15,6 +15,12 @@ export function Navigation() {
   const isMobile = useIsMobile();
   const [location] = useLocation();
 
+  const Logo = () => (
+    <Link href="/" className="flex items-center gap-2 mr-4">
+      <div className="font-bold text-xl text-primary">G&C</div>
+    </Link>
+  );
+
   const NavLinks = () => (
     <>
       {routes.map((route) => (
@@ -31,24 +37,30 @@ export function Navigation() {
 
   if (isMobile) {
     return (
-      <Sheet>
-        <SheetTrigger asChild>
-          <Button variant="ghost" size="icon">
-            <Menu className="h-6 w-6" />
-          </Button>
-        </SheetTrigger>
-        <SheetContent side="left" className="w-[240px] sm:w-[360px]">
-          <nav className="flex flex-col gap-2 mt-4">
-            <NavLinks />
-          </nav>
-        </SheetContent>
-      </Sheet>
+      <div className="flex justify-between items-center w-full">
+        <Logo />
+        <Sheet>
+          <SheetTrigger asChild>
+            <Button variant="ghost" size="icon">
+              <Menu className="h-6 w-6" />
+            </Button>
+          </SheetTrigger>
+          <SheetContent side="left" className="w-[240px] sm:w-[360px]">
+            <nav className="flex flex-col gap-2 mt-4">
+              <NavLinks />
+            </nav>
+          </SheetContent>
+        </Sheet>
+      </div>
     );
   }
 
   return (
-    <nav className="flex items-center gap-2">
-      <NavLinks />
-    </nav>
+    <div className="flex justify-between items-center w-full">
+      <Logo />
+      <nav className="flex items-center gap-2">
+        <NavLinks />
+      </nav>
+    </div>
   );
 }
