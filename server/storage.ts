@@ -1,23 +1,29 @@
-import { type Event, type InsertEvent, type ContactMessage, type InsertContactMessage } from "@shared/schema";
+import { type Event, type InsertEvent, type ContactMessage, type InsertContactMessage, type EventRegistration, type InsertEventRegistration } from "@shared/schema";
 
 export interface IStorage {
   getEvents(): Promise<Event[]>;
   getEvent(id: number): Promise<Event | undefined>;
   createEvent(event: InsertEvent): Promise<Event>;
   createContactMessage(message: InsertContactMessage): Promise<ContactMessage>;
+  createEventRegistration(registration: InsertEventRegistration): Promise<EventRegistration>;
+  getEventRegistrations(eventId: number): Promise<EventRegistration[]>;
 }
 
 export class MemStorage implements IStorage {
   private events: Map<number, Event>;
   private messages: Map<number, ContactMessage>;
+  private registrations: Map<number, EventRegistration>;
   private eventId: number;
   private messageId: number;
+  private registrationId: number;
 
   constructor() {
     this.events = new Map();
     this.messages = new Map();
+    this.registrations = new Map();
     this.eventId = 1;
     this.messageId = 1;
+    this.registrationId = 1;
 
     // Add some sample events
     const sampleEvents: InsertEvent[] = [
@@ -28,7 +34,7 @@ export class MemStorage implements IStorage {
         location: "Akosombo, Ghana",
         imageUrl: "https://images.unsplash.com/photo-1489493887464-892be6d1daae",
         isPastEvent: false,
-        registrationLink: "https://forms.gle/example1"
+        registrationLink: null
       },
       {
         title: "Night Games and Party at the Beach",
@@ -37,7 +43,7 @@ export class MemStorage implements IStorage {
         location: "Labadi Beach, Accra",
         imageUrl: "https://images.unsplash.com/photo-1481889617387-82a8f2413b6b",
         isPastEvent: false,
-        registrationLink: "https://forms.gle/example2"
+        registrationLink: null
       },
       {
         title: "Community Game Night",
@@ -73,6 +79,17 @@ export class MemStorage implements IStorage {
     const newMessage = { ...message, id, createdAt: new Date() };
     this.messages.set(id, newMessage);
     return newMessage;
+  }
+
+  async createEventRegistration(registration: InsertEventRegistration): Promise<EventRegistration> {
+    const id = this.registrationId++;
+    const newRegistration = { ...registration, id, createdAt: new Date() };
+    this.registrations.set(id, newRegistration);
+    return newRegistration;
+  }
+
+  async getEventRegistrations(eventId: number): Promise<EventRegistration[]> {
+    return Array.from(this.registrations.values()).filter(reg => reg.eventId === eventId);
   }
 }
 

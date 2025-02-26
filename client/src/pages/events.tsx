@@ -1,5 +1,5 @@
-import { useQuery } from "@tanstack/react-query";
-import { type Event } from "@shared/schema";
+import { useQuery, useMutation } from "@tanstack/react-query";
+import { type Event, type InsertEventRegistration } from "@shared/schema";
 import {
   Card,
   CardContent,
@@ -9,9 +9,39 @@ import {
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
+import { useToast } from "@/hooks/use-toast";
 import { format } from "date-fns";
 import { Calendar, MapPin } from "lucide-react";
 import { motion } from "framer-motion";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
+import { queryClient, apiRequest } from "@/lib/queryClient";
+
+const registrationSchema = z.object({
+  name: z.string().min(1, "Name is required"),
+  email: z.string().email("Invalid email address"),
+  phone: z.string().min(10, "Phone number must be at least 10 digits"),
+});
+
+type RegistrationData = z.infer<typeof registrationSchema>;
 
 export default function Events() {
   const { data: events, isLoading } = useQuery<Event[]>({
@@ -94,6 +124,36 @@ export default function Events() {
 }
 
 function EventCard({ event }: { event: Event }) {
+  const { toast } = useToast();
+  const form = useForm<RegistrationData>({
+    resolver: zodResolver(registrationSchema),
+    defaultValues: {
+      name: "",
+      email: "",
+      phone: ""
+    }
+  });
+
+  const mutation = useMutation({
+    mutationFn: async (data: RegistrationData) => {
+      await apiRequest("POST", `/api/events/${event.id}/register`, data);
+    },
+    onSuccess: () => {
+      toast({
+        title: "Registration successful!",
+        description: "You've been registered for the event.",
+      });
+      form.reset();
+    },
+    onError: () => {
+      toast({
+        variant: "destructive",
+        title: "Registration failed",
+        description: "Please try again later.",
+      });
+    }
+  });
+
   return (
     <Card>
       <div
@@ -117,12 +177,81 @@ function EventCard({ event }: { event: Event }) {
         </div>
       </CardContent>
       <CardFooter>
-        {!event.isPastEvent && event.registrationLink && (
-          <Button className="w-full" asChild>
-            <a href={event.registrationLink} target="_blank" rel="noopener noreferrer">
-              Register Now
-            </a>
-          </Button>
+        {!event.isPastEvent && (
+          <Dialog>
+            <DialogTrigger asChild>
+              <Button className="w-full">Register Now</Button>
+            </DialogTrigger>
+            <DialogContent className="sm:max-w-[425px]">
+              <DialogHeader>
+                <DialogTitle>Register for {event.title}</DialogTitle>
+                <DialogDescription>
+                  Fill out the form below to register for this event.
+                </DialogDescription>
+              </DialogHeader>
+              <Form {...form}>
+                <form
+                  onSubmit={form.handleSubmit((data) => mutation.mutate(data))}
+                  className="space-y-4 mt-4"
+                >
+                  <FormField
+                    control={form.control}
+                    name="name"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Name</FormLabel>
+                        <FormControl>
+                          <Input placeholder="Your name" {...field} />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <FormField
+                    control={form.control}
+                    name="email"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Email</FormLabel>
+                        <FormControl>
+                          <Input
+                            type="email"
+                            placeholder="your.email@example.com"
+                            {...field}
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <FormField
+                    control={form.control}
+                    name="phone"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Phone</FormLabel>
+                        <FormControl>
+                          <Input
+                            type="tel"
+                            placeholder="Your phone number"
+                            {...field}
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <Button
+                    type="submit"
+                    className="w-full"
+                    disabled={mutation.isPending}
+                  >
+                    {mutation.isPending ? "Registering..." : "Register"}
+                  </Button>
+                </form>
+              </Form>
+            </DialogContent>
+          </Dialog>
         )}
       </CardFooter>
     </Card>
