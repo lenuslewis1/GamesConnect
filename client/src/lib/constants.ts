@@ -1,7 +1,7 @@
 // Image assets
 export const IMAGES = {
   logo: '/src/assets/images/logo.svg',
-  header: '/src/assets/images/header image.jpg',
+  header: '/src/assets/images/headerr.jpg',
   events: {
     akosombo: 'https://images.unsplash.com/photo-1489493887464-892be6d1daae',
     beach: 'https://images.unsplash.com/photo-1481889617387-82a8f2413b6b',
