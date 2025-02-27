@@ -290,44 +290,45 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="container pb-8">
+      <section className="container pb-8 bg-[#f9f9f9] py-12 rounded-lg">
+        <div className="grid grid-cols-3 gap-6 mb-12 text-center">
+          <div>
+            <h3 className="text-4xl font-bold text-primary">3+</h3>
+            <p className="text-muted-foreground">Exciting Events Hosted</p>
+          </div>
+          <div>
+            <h3 className="text-4xl font-bold text-primary">60+</h3>
+            <p className="text-muted-foreground">Participants Engaged</p>
+          </div>
+          <div>
+            <h3 className="text-4xl font-bold text-primary">90%</h3>
+            <p className="text-muted-foreground">Event Satisfaction Rate</p>
+          </div>
+        </div>
+        
         <div className="grid md:grid-cols-2 gap-12 items-center">
           <div>
-            <h2 className="text-3xl font-bold mb-4">About Games & Connect</h2>
-            <p className="text-muted-foreground mb-6">
-              We're more than just a community - we're a family of game enthusiasts, adventurers, and friends who believe in creating meaningful connections through shared experiences.
+            <h2 className="text-3xl font-bold mb-4">Experience outdoor games<br />and travel like never before.</h2>
+            <p className="text-muted-foreground mb-4">
+              We organize exciting activities that bring young people together to play, explore, and create lasting memories across Accra, Ghana. Let's play, connect, and travel!
             </p>
-            <ul className="space-y-4">
-              {[
-                "Weekly outdoor games and activities",
-                "Monthly travel adventures",
-                "Trivia Fridays",
-                "Special community events"
-              ].map((item, i) => (
-                <motion.li
-                  key={i}
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  transition={{ delay: i * 0.1 }}
-                  className="flex items-center gap-2"
-                >
-                  <div className="h-2 w-2 rounded-full bg-primary" />
-                  {item}
-                </motion.li>
-              ))}
-            </ul>
+            <p className="text-muted-foreground">
+              At Games and Connect, we foster social connections through fun outdoor games and immersive travel experiences. We aim to build a vibrant community where people bond, stay active, and discover the beauty of Ghana.
+            </p>
           </div>
-          <div className="grid grid-cols-2 gap-4">
-            <img
-              src={IMAGES.events.community}
-              alt="Community event"
-              className="rounded-lg object-cover h-48 w-full"
-            />
-            <img
-              src={IMAGES.events.beach}
-              alt="Outdoor games"
-              className="rounded-lg object-cover h-48 w-full mt-8"
-            />
+          <div className="flex justify-center">
+            <div className="relative">
+              <img 
+                src="/src/assets/images/target.png" 
+                alt="Target" 
+                className="h-32 absolute -left-16 top-0"
+              />
+              <img 
+                src="/src/assets/images/cards.png" 
+                alt="Playing cards" 
+                className="h-24 absolute -right-12 bottom-0"
+              />
+            </div>
           </div>
         </div>
       </section>
