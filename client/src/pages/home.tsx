@@ -12,7 +12,7 @@ export default function Home() {
           className="absolute inset-0 z-0"
           initial={{ scale: 1.1 }}
           animate={{ scale: 1 }}
-          transition={{ duration: 20, repeat: Infinity, repeatType: "reverse", ease: "linear" }}
+          transition={{ duration: 10, repeat: Infinity, repeatType: "reverse", ease: "linear" }}
           style={{
             backgroundImage: `url(${IMAGES.header})`,
             backgroundSize: "cover",
@@ -23,7 +23,7 @@ export default function Home() {
           className="absolute inset-0 z-0"
           initial={{ opacity: 0.5 }}
           animate={{ opacity: 0.7 }}
-          transition={{ duration: 8, repeat: Infinity, repeatType: "reverse", ease: "easeInOut" }}
+          transition={{ duration: 4, repeat: Infinity, repeatType: "reverse", ease: "easeInOut" }}
           style={{
             background: "linear-gradient(to bottom, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.4) 100%)",
           }}
