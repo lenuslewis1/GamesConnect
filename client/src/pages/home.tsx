@@ -198,7 +198,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="py-12 bg-[#F8BEA7]">
+      <section className="py-12 bg-white">
         <div className="container">
           <div className="max-w-3xl mx-auto">
             <CountdownTimer 
@@ -290,7 +290,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="container pb-8 bg-[#f9f9f9] py-12 rounded-lg">
+      <section className="container pb-8 bg-white py-12 rounded-lg">
         <div className="grid grid-cols-3 gap-6 mb-12 text-center">
           <div>
             <h3 className="text-4xl font-bold text-primary">3+</h3>
