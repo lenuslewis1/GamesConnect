@@ -40,6 +40,7 @@ const registrationSchema = z.object({
   name: z.string().min(1, "Name is required"),
   email: z.string().email("Invalid email address"),
   phone: z.string().min(10, "Phone number must be at least 10 digits"),
+  location: z.string().min(1, "Location is required"), // Added location field to schema
 });
 
 type RegistrationData = z.infer<typeof registrationSchema>;
@@ -134,7 +135,8 @@ function EventCard({ event }: { event: Event }) {
     defaultValues: {
       name: "",
       email: "",
-      phone: ""
+      phone: "",
+      location: "" // Added default value for location
     }
   });
 
@@ -240,6 +242,19 @@ function EventCard({ event }: { event: Event }) {
                             placeholder="Your phone number"
                             {...field}
                           />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <FormField
+                    control={form.control}
+                    name="location"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Location</FormLabel>
+                        <FormControl>
+                          <Input placeholder="Your location" {...field} />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
