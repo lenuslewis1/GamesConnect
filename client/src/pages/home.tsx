@@ -340,7 +340,7 @@ export default function Home() {
               
               <div className="flex justify-center mb-4">
                 <img 
-                  src="/src/assets/images/play-icon.png" 
+                  src="/src/assets/images/play.png" 
                   alt="Person playing soccer" 
                   className="h-32"
                 />
@@ -380,7 +380,7 @@ export default function Home() {
               
               <div className="flex justify-center mb-4">
                 <img 
-                  src="/src/assets/images/connect-icon.png" 
+                  src="/src/assets/images/connect.png" 
                   alt="People connecting" 
                   className="h-32"
                 />
