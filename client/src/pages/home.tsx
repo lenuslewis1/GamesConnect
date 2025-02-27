@@ -360,7 +360,7 @@ export default function Home() {
               
               <div className="flex justify-center mb-4">
                 <img 
-                  src="/src/assets/images/explore-icon.png" 
+                  src="/src/assets/images/explore.png" 
                   alt="People exploring" 
                   className="h-32"
                 />
@@ -400,7 +400,7 @@ export default function Home() {
               
               <div className="flex justify-center mb-4">
                 <img 
-                  src="/src/assets/images/join-icon.png" 
+                  src="/src/assets/images/join.png" 
                   alt="People celebrating" 
                   className="h-32"
                 />
