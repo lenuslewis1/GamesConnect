@@ -32,6 +32,7 @@ const registrationSchema = z.object({
   name: z.string().min(1, "Name is required"),
   email: z.string().email("Invalid email address"),
   phone: z.string().min(10, "Phone number must be at least 10 digits"),
+  location: z.string().min(1, "Location is required"),
 });
 
 type RegistrationData = z.infer<typeof registrationSchema>;
@@ -43,7 +44,8 @@ export default function Home() {
     defaultValues: {
       name: "",
       email: "",
-      phone: ""
+      phone: "",
+      location: ""
     }
   });
 
@@ -109,34 +111,15 @@ export default function Home() {
               Join Accra's most vibrant community for outdoor games, travel events, and unforgettable social experiences.
             </p>
             <div className="flex gap-4 justify-center">
-              <Button size="lg" asChild>
-                <Link href="/events">Explore Events</Link>
-              </Button>
-              <Button size="lg" variant="outline" className="bg-white/10" asChild>
-                <Link href="/community">Join Community</Link>
-              </Button>
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
-      <section className="py-12 bg-[#F8BEA7]">
-        <div className="container">
-          <div className="max-w-3xl mx-auto">
-            <CountdownTimer 
-              targetDate={new Date("April 18, 2025")} 
-              eventName="Upcoming Event: Games Day at Akosombo" 
-            />
-            <div className="flex justify-center mt-6">
               <Dialog>
                 <DialogTrigger asChild>
-                  <Button size="lg" className="px-8">Join Now</Button>
+                  <Button size="lg">Explore Events</Button>
                 </DialogTrigger>
                 <DialogContent className="sm:max-w-[425px]">
                   <DialogHeader>
                     <DialogTitle>Register for Games Day at Akosombo</DialogTitle>
                     <DialogDescription>
-                      Fill out the form below to register for this event on April 18, 2025.
+                      Fill out the form below to register for this event on April 18, 2025. Price: 500 Ghana Cedis
                     </DialogDescription>
                   </DialogHeader>
                   <Form {...form}>
@@ -178,6 +161,190 @@ export default function Home() {
                             <FormLabel>Phone</FormLabel>
                             <FormControl>
                               <Input placeholder="Phone number" {...field} />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+                      <FormField
+                        control={form.control}
+                        name="location"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel>Location</FormLabel>
+                            <FormControl>
+                              <Input placeholder="Your location" {...field} />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+                      <Button
+                        type="submit"
+                        className="w-full"
+                        disabled={mutation.isPending}
+                      >
+                        {mutation.isPending ? "Registering..." : "Register"}
+                      </Button>
+                    </form>
+                  </Form>
+                </DialogContent>
+              </Dialog>
+              <Dialog>
+                <DialogTrigger asChild>
+                  <Button size="lg" variant="outline" className="bg-white/10">Join Community</Button>
+                </DialogTrigger>
+                <DialogContent className="sm:max-w-[425px]">
+                  <DialogHeader>
+                    <DialogTitle>Register for Community Membership</DialogTitle>
+                    <DialogDescription>
+                      Fill out the form below to join our community. Price: 500 Ghana Cedis
+                    </DialogDescription>
+                  </DialogHeader>
+                  <Form {...form}>
+                    <form
+                      onSubmit={form.handleSubmit((data) => mutation.mutate(data))}
+                      className="space-y-4 mt-4"
+                    >
+                      <FormField
+                        control={form.control}
+                        name="name"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel>Name</FormLabel>
+                            <FormControl>
+                              <Input placeholder="Your name" {...field} />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+                      <FormField
+                        control={form.control}
+                        name="email"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel>Email</FormLabel>
+                            <FormControl>
+                              <Input placeholder="your.email@example.com" {...field} type="email" />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+                      <FormField
+                        control={form.control}
+                        name="phone"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel>Phone</FormLabel>
+                            <FormControl>
+                              <Input placeholder="Phone number" {...field} />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+                      <FormField
+                        control={form.control}
+                        name="location"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel>Location</FormLabel>
+                            <FormControl>
+                              <Input placeholder="Your location" {...field} />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+                      <Button
+                        type="submit"
+                        className="w-full"
+                        disabled={mutation.isPending}
+                      >
+                        {mutation.isPending ? "Registering..." : "Register"}
+                      </Button>
+                    </form>
+                  </Form>
+                </DialogContent>
+              </Dialog>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      <section className="py-12 bg-[#F8BEA7]">
+        <div className="container">
+          <div className="max-w-3xl mx-auto">
+            <CountdownTimer 
+              targetDate={new Date("April 18, 2025")} 
+              eventName="Upcoming Event: Games Day at Akosombo" 
+            />
+            <div className="flex justify-center mt-6">
+              <Dialog>
+                <DialogTrigger asChild>
+                  <Button size="lg" className="px-8">Join Now</Button>
+                </DialogTrigger>
+                <DialogContent className="sm:max-w-[425px]">
+                  <DialogHeader>
+                    <DialogTitle>Register for Games Day at Akosombo</DialogTitle>
+                    <DialogDescription>
+                      Fill out the form below to register for this event on April 18, 2025. Price: 500 Ghana Cedis
+                    </DialogDescription>
+                  </DialogHeader>
+                  <Form {...form}>
+                    <form
+                      onSubmit={form.handleSubmit((data) => mutation.mutate(data))}
+                      className="space-y-4 mt-4"
+                    >
+                      <FormField
+                        control={form.control}
+                        name="name"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel>Name</FormLabel>
+                            <FormControl>
+                              <Input placeholder="Your name" {...field} />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+                      <FormField
+                        control={form.control}
+                        name="email"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel>Email</FormLabel>
+                            <FormControl>
+                              <Input placeholder="your.email@example.com" {...field} type="email" />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+                      <FormField
+                        control={form.control}
+                        name="phone"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel>Phone</FormLabel>
+                            <FormControl>
+                              <Input placeholder="Phone number" {...field} />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+                      <FormField
+                        control={form.control}
+                        name="location"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel>Location</FormLabel>
+                            <FormControl>
+                              <Input placeholder="Your location" {...field} />
                             </FormControl>
                             <FormMessage />
                           </FormItem>
