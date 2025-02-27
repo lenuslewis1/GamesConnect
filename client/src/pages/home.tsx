@@ -58,12 +58,14 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="container py-8">
-        <div className="max-w-3xl mx-auto">
-          <CountdownTimer 
-            targetDate={new Date(Date.now() + 3 * 24 * 60 * 60 * 1000)} 
-            eventName="Upcoming Event: Beach Volleyball Tournament" 
-          />
+      <section className="py-12 bg-[#F8BEA7]">
+        <div className="container">
+          <div className="max-w-3xl mx-auto">
+            <CountdownTimer 
+              targetDate={new Date(Date.now() + 3 * 24 * 60 * 60 * 1000)} 
+              eventName="Upcoming Event: Beach Volleyball Tournament" 
+            />
+          </div>
         </div>
       </section>
 
