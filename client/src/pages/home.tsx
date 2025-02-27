@@ -400,7 +400,7 @@ export default function Home() {
               
               <div className="flex justify-center mb-4">
                 <img 
-                  src="/src/assets/images/join.png" 
+                  src="/src/assets/images/join_us.png" 
                   alt="People celebrating" 
                   className="h-32"
                 />
