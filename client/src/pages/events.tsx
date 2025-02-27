@@ -28,7 +28,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/hooks/use-toast";
 import { format } from "date-fns";
-import { Calendar, MapPin } from "lucide-react";
+import { Calendar, MapPin, Tag } from "lucide-react";
 import { motion } from "framer-motion";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -180,6 +180,12 @@ function EventCard({ event }: { event: Event }) {
             <MapPin className="h-4 w-4" />
             {event.location}
           </div>
+          {!event.isPastEvent && (
+            <div className="flex items-center gap-2 font-medium text-primary">
+              <Tag className="h-4 w-4" />
+              Price: 500 Ghana Cedis
+            </div>
+          )}
         </div>
       </CardContent>
       <CardFooter>
@@ -192,7 +198,7 @@ function EventCard({ event }: { event: Event }) {
               <DialogHeader>
                 <DialogTitle>Register for {event.title}</DialogTitle>
                 <DialogDescription>
-                  Fill out the form below to register for this event.
+                  Fill out the form below to register for this event. Price: 500 Ghana Cedis
                 </DialogDescription>
               </DialogHeader>
               <Form {...form}>
