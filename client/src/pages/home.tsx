@@ -7,14 +7,25 @@ import { Navigation } from "@/components/site/navigation";
 export default function Home() {
   return (
     <div className="flex flex-col gap-16">
-      <section className="relative min-h-[600px] flex items-center justify-center">
-        <div
+      <section className="relative min-h-[600px] flex items-center justify-center overflow-hidden">
+        <motion.div
           className="absolute inset-0 z-0"
+          initial={{ scale: 1.1 }}
+          animate={{ scale: 1 }}
+          transition={{ duration: 20, repeat: Infinity, repeatType: "reverse", ease: "linear" }}
           style={{
             backgroundImage: `url(${IMAGES.header})`,
             backgroundSize: "cover",
             backgroundPosition: "center",
-            filter: "brightness(0.5)"
+          }}
+        />
+        <motion.div
+          className="absolute inset-0 z-0"
+          initial={{ opacity: 0.5 }}
+          animate={{ opacity: 0.7 }}
+          transition={{ duration: 8, repeat: Infinity, repeatType: "reverse", ease: "easeInOut" }}
+          style={{
+            background: "linear-gradient(to bottom, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.4) 100%)",
           }}
         />
         <div className="absolute top-0 left-0 right-0 z-50">
