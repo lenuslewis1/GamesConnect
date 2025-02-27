@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Menu } from "lucide-react";
 import { useIsMobile } from "@/hooks/use-mobile";
+import { IMAGES } from "@/lib/constants";
 
 const routes = [
   { path: "/", label: "Home" },
@@ -16,8 +17,9 @@ export function Navigation() {
   const [location] = useLocation();
 
   const Logo = () => (
-    <Link href="/" className="flex items-center gap-2 mr-4">
-      <div className="font-bold text-xl text-primary">G&C</div>
+    <Link href="/" className="flex items-center gap-2">
+      <img src={IMAGES.logo} alt="Games & Connect" className="h-8 w-8" />
+      <span className="font-bold text-xl">Games & Connect</span>
     </Link>
   );
 
