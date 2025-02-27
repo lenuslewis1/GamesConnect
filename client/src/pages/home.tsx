@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import { IMAGES } from "@/lib/constants";
 import { Navigation } from "@/components/site/navigation";
+import { CountdownTimer } from "@/components/event/countdown-timer";
 
 export default function Home() {
   return (
@@ -54,6 +55,15 @@ export default function Home() {
               </Button>
             </div>
           </motion.div>
+        </div>
+      </section>
+
+      <section className="container my-8">
+        <div className="max-w-3xl mx-auto">
+          <CountdownTimer 
+            targetDate={new Date(Date.now() + 3 * 24 * 60 * 60 * 1000)} 
+            eventName="Upcoming Event: Beach Volleyball Tournament" 
+          />
         </div>
       </section>
 
