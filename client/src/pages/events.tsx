@@ -34,6 +34,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { queryClient, apiRequest } from "@/lib/queryClient";
+import { Navigation } from "@/components/site/navigation";
 
 const registrationSchema = z.object({
   name: z.string().min(1, "Name is required"),
@@ -76,6 +77,9 @@ export default function Events() {
 
   return (
     <div className="container py-8">
+      <header className="mb-8">
+        <Navigation />
+      </header>
       <div className="max-w-2xl mx-auto text-center mb-12">
         <h1 className="text-4xl font-bold mb-4">Our Events</h1>
         <p className="text-muted-foreground">

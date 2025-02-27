@@ -16,6 +16,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
 import { apiRequest } from "@/lib/queryClient";
 import { motion } from "framer-motion";
+import { Navigation } from "@/components/site/navigation";
 
 export default function Contact() {
   const { toast } = useToast();
@@ -50,6 +51,9 @@ export default function Contact() {
 
   return (
     <div className="container py-8">
+      <header className="mb-8">
+        <Navigation />
+      </header>
       <div className="max-w-2xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

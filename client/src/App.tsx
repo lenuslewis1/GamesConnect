@@ -13,12 +13,6 @@ import NotFound from "@/pages/not-found";
 function Router() {
   return (
     <div className="min-h-screen flex flex-col">
-      <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-        <div className="container flex h-14 items-center">
-          <Navigation />
-        </div>
-      </header>
-
       <main className="flex-1">
         <Switch>
           <Route path="/" component={Home} />

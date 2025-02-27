@@ -8,10 +8,14 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { SiWhatsapp } from "react-icons/si";
+import { Navigation } from "@/components/site/navigation";
 
 export default function Community() {
   return (
     <div className="container py-8">
+      <header className="mb-8">
+        <Navigation />
+      </header>
       <div className="max-w-2xl mx-auto text-center mb-12">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
