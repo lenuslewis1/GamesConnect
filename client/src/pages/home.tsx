@@ -8,15 +8,6 @@ import { CountdownTimer } from "@/components/event/countdown-timer";
 export default function Home() {
   return (
     <div className="flex flex-col gap-16">
-      <section className="container pt-4 pb-0">
-        <div className="max-w-3xl mx-auto">
-          <CountdownTimer 
-            targetDate={new Date(Date.now() + 3 * 24 * 60 * 60 * 1000)} 
-            eventName="Upcoming Event: Beach Volleyball Tournament" 
-          />
-        </div>
-      </section>
-
       <section className="relative min-h-[600px] flex items-center justify-center overflow-hidden">
         <motion.div
           className="absolute inset-0 z-0"
@@ -64,6 +55,15 @@ export default function Home() {
               </Button>
             </div>
           </motion.div>
+        </div>
+      </section>
+
+      <section className="container py-8">
+        <div className="max-w-3xl mx-auto">
+          <CountdownTimer 
+            targetDate={new Date(Date.now() + 3 * 24 * 60 * 60 * 1000)} 
+            eventName="Upcoming Event: Beach Volleyball Tournament" 
+          />
         </div>
       </section>
 
