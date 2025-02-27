@@ -328,6 +328,94 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      <section className="container py-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {/* Play Card */}
+          <Card className="overflow-hidden bg-[#E6B75A]">
+            <CardContent className="p-6 text-white">
+              <h3 className="text-2xl font-bold mb-2">Play</h3>
+              <p className="text-sm mb-4">Immerse yourself in thrilling games and challenges.</p>
+              
+              <div className="flex justify-center mb-4">
+                <img 
+                  src="/src/assets/images/play-icon.png" 
+                  alt="Person playing soccer" 
+                  className="h-32"
+                />
+              </div>
+              
+              <p className="text-sm mt-2">
+                Come to the playground of laughter and friendship, where games bring people together in fun competition.
+              </p>
+            </CardContent>
+          </Card>
+
+          {/* Explore Card */}
+          <Card className="overflow-hidden bg-[#F48FB1]">
+            <CardContent className="p-6 text-white">
+              <h3 className="text-2xl font-bold mb-2">Explore</h3>
+              <p className="text-sm mb-4">Discover new places and adventures.</p>
+              
+              <div className="flex justify-center mb-4">
+                <img 
+                  src="/src/assets/images/explore-icon.png" 
+                  alt="People exploring" 
+                  className="h-32"
+                />
+              </div>
+              
+              <p className="text-sm mt-2">
+                Join us for unforgettable trips and experiences that take you beyond the ordinary.
+              </p>
+            </CardContent>
+          </Card>
+
+          {/* Connect Card */}
+          <Card className="overflow-hidden bg-[#80A395]">
+            <CardContent className="p-6 text-white">
+              <h3 className="text-2xl font-bold mb-2">Connect</h3>
+              <p className="text-sm mb-4">Meet new people and build lasting friendships.</p>
+              
+              <div className="flex justify-center mb-4">
+                <img 
+                  src="/src/assets/images/connect-icon.png" 
+                  alt="People connecting" 
+                  className="h-32"
+                />
+              </div>
+              
+              <p className="text-sm mt-2">
+                Connect with a dynamic, diverse community that shares your passion for fun and friendship.
+              </p>
+            </CardContent>
+          </Card>
+
+          {/* Join Us Card */}
+          <Card className="overflow-hidden bg-[#D4C627]">
+            <CardContent className="p-6 text-white">
+              <h3 className="text-2xl font-bold mb-2">Join Us</h3>
+              <p className="text-sm mb-4">Be part of the next big event!</p>
+              
+              <div className="flex justify-center mb-4">
+                <img 
+                  src="/src/assets/images/join-icon.png" 
+                  alt="People celebrating" 
+                  className="h-32"
+                />
+              </div>
+              
+              <p className="text-sm mt-2">
+                Don't miss out on the fun—secure your spot today.
+              </p>
+              
+              <Button className="w-full mt-4 bg-[#5B68DF] hover:bg-[#4555D2]">
+                Sign Up Now
+              </Button>
+            </CardContent>
+          </Card>
+        </div>
+      </section>
     </div>
   );
 }
