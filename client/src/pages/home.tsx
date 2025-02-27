@@ -62,9 +62,14 @@ export default function Home() {
         <div className="container">
           <div className="max-w-3xl mx-auto">
             <CountdownTimer 
-              targetDate={new Date(Date.now() + 3 * 24 * 60 * 60 * 1000)} 
-              eventName="Upcoming Event: Beach Volleyball Tournament" 
+              targetDate={new Date("April 18, 2025")} 
+              eventName="Upcoming Event: Games Day at Akosombo" 
             />
+            <div className="flex justify-center mt-6">
+              <Button size="lg" className="px-8">
+                <Link href="/events">Join Now</Link>
+              </Button>
+            </div>
           </div>
         </div>
       </section>
