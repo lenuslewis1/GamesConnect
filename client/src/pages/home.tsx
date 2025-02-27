@@ -2,11 +2,12 @@ import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import { IMAGES } from "@/lib/constants";
+import { Navigation } from "@/components/site/navigation";
 
 export default function Home() {
   return (
-    <div className="flex flex-col gap-16 pb-8">
-      <section className="relative h-[600px] flex items-center justify-center overflow-hidden">
+    <div className="flex flex-col gap-16">
+      <section className="relative min-h-[600px] flex items-center justify-center">
         <div
           className="absolute inset-0 z-0"
           style={{
@@ -16,7 +17,12 @@ export default function Home() {
             filter: "brightness(0.5)"
           }}
         />
-        <div className="container relative z-10 text-center">
+        <div className="absolute top-0 left-0 right-0 z-50">
+          <div className="container">
+            <Navigation variant="transparent" />
+          </div>
+        </div>
+        <div className="container relative z-10 text-center mt-14">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -40,7 +46,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="container">
+      <section className="container pb-8">
         <div className="grid md:grid-cols-2 gap-12 items-center">
           <div>
             <h2 className="text-3xl font-bold mb-4">About Games & Connect</h2>
