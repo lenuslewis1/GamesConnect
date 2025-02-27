@@ -111,85 +111,9 @@ export default function Home() {
               Join Accra's most vibrant community for outdoor games, travel events, and unforgettable social experiences.
             </p>
             <div className="flex gap-4 justify-center">
-              <Dialog>
-                <DialogTrigger asChild>
-                  <Button size="lg">Explore Events</Button>
-                </DialogTrigger>
-                <DialogContent className="sm:max-w-[425px]">
-                  <DialogHeader>
-                    <DialogTitle>Register for Games Day at Akosombo</DialogTitle>
-                    <DialogDescription>
-                      Fill out the form below to register for this event on April 18, 2025. Price: 500 Ghana Cedis
-                    </DialogDescription>
-                  </DialogHeader>
-                  <Form {...form}>
-                    <form
-                      onSubmit={form.handleSubmit((data) => mutation.mutate(data))}
-                      className="space-y-4 mt-4"
-                    >
-                      <FormField
-                        control={form.control}
-                        name="name"
-                        render={({ field }) => (
-                          <FormItem>
-                            <FormLabel>Name</FormLabel>
-                            <FormControl>
-                              <Input placeholder="Your name" {...field} />
-                            </FormControl>
-                            <FormMessage />
-                          </FormItem>
-                        )}
-                      />
-                      <FormField
-                        control={form.control}
-                        name="email"
-                        render={({ field }) => (
-                          <FormItem>
-                            <FormLabel>Email</FormLabel>
-                            <FormControl>
-                              <Input placeholder="your.email@example.com" {...field} type="email" />
-                            </FormControl>
-                            <FormMessage />
-                          </FormItem>
-                        )}
-                      />
-                      <FormField
-                        control={form.control}
-                        name="phone"
-                        render={({ field }) => (
-                          <FormItem>
-                            <FormLabel>Phone</FormLabel>
-                            <FormControl>
-                              <Input placeholder="Phone number" {...field} />
-                            </FormControl>
-                            <FormMessage />
-                          </FormItem>
-                        )}
-                      />
-                      <FormField
-                        control={form.control}
-                        name="location"
-                        render={({ field }) => (
-                          <FormItem>
-                            <FormLabel>Location</FormLabel>
-                            <FormControl>
-                              <Input placeholder="Your location" {...field} />
-                            </FormControl>
-                            <FormMessage />
-                          </FormItem>
-                        )}
-                      />
-                      <Button
-                        type="submit"
-                        className="w-full"
-                        disabled={mutation.isPending}
-                      >
-                        {mutation.isPending ? "Registering..." : "Register"}
-                      </Button>
-                    </form>
-                  </Form>
-                </DialogContent>
-              </Dialog>
+              <Link href="/events">
+                <Button size="lg">Explore Events</Button>
+              </Link>
               <Dialog>
                 <DialogTrigger asChild>
                   <Button size="lg" variant="outline" className="bg-white/10">Join Community</Button>
