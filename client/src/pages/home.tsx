@@ -306,29 +306,25 @@ export default function Home() {
           </div>
         </div>
         
-        <div className="grid md:grid-cols-2 gap-12 items-center">
-          <div>
-            <h2 className="text-3xl font-bold mb-4">Experience outdoor games<br />and travel like never before.</h2>
-            <p className="text-muted-foreground mb-4">
-              We organize exciting activities that bring young people together to play, explore, and create lasting memories across Accra, Ghana. Let's play, connect, and travel!
-            </p>
-            <p className="text-muted-foreground">
-              At Games and Connect, we foster social connections through fun outdoor games and immersive travel experiences. We aim to build a vibrant community where people bond, stay active, and discover the beauty of Ghana.
-            </p>
-          </div>
-          <div className="flex justify-center">
-            <div className="relative">
-              <img 
-                src="/src/assets/images/target.png" 
-                alt="Target" 
-                className="h-32 absolute -left-16 top-0"
-              />
-              <img 
-                src="/src/assets/images/cards.png" 
-                alt="Playing cards" 
-                className="h-24 absolute -right-12 bottom-0"
-              />
-            </div>
+        <div className="flex flex-col items-center text-center">
+          <h2 className="text-3xl font-bold mb-4">Experience outdoor games<br />and travel like never before.</h2>
+          <p className="text-muted-foreground mb-4 max-w-2xl">
+            We organize exciting activities that bring young people together to play, explore, and create lasting memories across Accra, Ghana. Let's play, connect, and travel!
+          </p>
+          <p className="text-muted-foreground mb-8 max-w-2xl">
+            At Games and Connect, we foster social connections through fun outdoor games and immersive travel experiences. We aim to build a vibrant community where people bond, stay active, and discover the beauty of Ghana.
+          </p>
+          <div className="relative mt-4">
+            <img 
+              src="/src/assets/images/target.png" 
+              alt="Target" 
+              className="h-32 absolute -left-16 top-0"
+            />
+            <img 
+              src="/src/assets/images/cards.png" 
+              alt="Playing cards" 
+              className="h-24 absolute -right-12 bottom-0"
+            />
           </div>
         </div>
       </section>
