@@ -1,6 +1,7 @@
 import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
+import { IMAGES } from "@/lib/constants";
 
 export default function Home() {
   return (
@@ -9,7 +10,7 @@ export default function Home() {
         <div
           className="absolute inset-0 z-0"
           style={{
-            backgroundImage: "url(https://images.unsplash.com/photo-1489493887464-892be6d1daae)",
+            backgroundImage: `url(${IMAGES.header})`,
             backgroundSize: "cover",
             backgroundPosition: "center",
             filter: "brightness(0.5)"
@@ -68,12 +69,12 @@ export default function Home() {
           </div>
           <div className="grid grid-cols-2 gap-4">
             <img
-              src="https://images.unsplash.com/photo-1481889617387-82a8f2413b6b"
+              src={IMAGES.events.community}
               alt="Community event"
               className="rounded-lg object-cover h-48 w-full"
             />
             <img
-              src="https://images.unsplash.com/photo-1522543558187-768b6df7c25c"
+              src={IMAGES.events.beach}
               alt="Outdoor games"
               className="rounded-lg object-cover h-48 w-full mt-8"
             />
