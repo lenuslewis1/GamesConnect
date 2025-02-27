@@ -4,8 +4,70 @@ import { motion } from "framer-motion";
 import { IMAGES } from "@/lib/constants";
 import { Navigation } from "@/components/site/navigation";
 import { CountdownTimer } from "@/components/event/countdown-timer";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
+import { useMutation } from "@tanstack/react-query";
+import { useToast } from "@/hooks/use-toast";
+import { apiRequest } from "@/lib/queryClient";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
+
+const registrationSchema = z.object({
+  name: z.string().min(1, "Name is required"),
+  email: z.string().email("Invalid email address"),
+  phone: z.string().min(10, "Phone number must be at least 10 digits"),
+});
+
+type RegistrationData = z.infer<typeof registrationSchema>;
 
 export default function Home() {
+  const { toast } = useToast();
+  const form = useForm<RegistrationData>({
+    resolver: zodResolver(registrationSchema),
+    defaultValues: {
+      name: "",
+      email: "",
+      phone: ""
+    }
+  });
+
+  const mutation = useMutation({
+    mutationFn: async (data: RegistrationData) => {
+      // Assuming we'll register for an event with ID 1 (the Games Day event)
+      await apiRequest("POST", "/api/events/1/register", data);
+    },
+    onSuccess: () => {
+      toast({
+        title: "Registration successful!",
+        description: "You've been registered for Games Day at Akosombo.",
+      });
+      form.reset();
+    },
+    onError: () => {
+      toast({
+        variant: "destructive",
+        title: "Registration failed",
+        description: "Please try again later.",
+      });
+    }
+  });
+
   return (
     <div className="flex flex-col gap-16">
       <section className="relative min-h-[600px] flex items-center justify-center overflow-hidden">
@@ -66,9 +128,72 @@ export default function Home() {
               eventName="Upcoming Event: Games Day at Akosombo" 
             />
             <div className="flex justify-center mt-6">
-              <Button size="lg" className="px-8">
-                <Link href="/events">Join Now</Link>
-              </Button>
+              <Dialog>
+                <DialogTrigger asChild>
+                  <Button size="lg" className="px-8">Join Now</Button>
+                </DialogTrigger>
+                <DialogContent className="sm:max-w-[425px]">
+                  <DialogHeader>
+                    <DialogTitle>Register for Games Day at Akosombo</DialogTitle>
+                    <DialogDescription>
+                      Fill out the form below to register for this event on April 18, 2025.
+                    </DialogDescription>
+                  </DialogHeader>
+                  <Form {...form}>
+                    <form
+                      onSubmit={form.handleSubmit((data) => mutation.mutate(data))}
+                      className="space-y-4 mt-4"
+                    >
+                      <FormField
+                        control={form.control}
+                        name="name"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel>Name</FormLabel>
+                            <FormControl>
+                              <Input placeholder="Your name" {...field} />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+                      <FormField
+                        control={form.control}
+                        name="email"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel>Email</FormLabel>
+                            <FormControl>
+                              <Input placeholder="your.email@example.com" {...field} type="email" />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+                      <FormField
+                        control={form.control}
+                        name="phone"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel>Phone</FormLabel>
+                            <FormControl>
+                              <Input placeholder="Phone number" {...field} />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+                      <Button
+                        type="submit"
+                        className="w-full"
+                        disabled={mutation.isPending}
+                      >
+                        {mutation.isPending ? "Registering..." : "Register"}
+                      </Button>
+                    </form>
+                  </Form>
+                </DialogContent>
+              </Dialog>
             </div>
           </div>
         </div>
